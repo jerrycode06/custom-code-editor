@@ -6,6 +6,7 @@ type Props = {
   value: string;
   onValueChange: (value: string) => void;
   highlight: (value: string) => string | React.ReactNode;
+  language: "javascript" | "css" | "html";
   padding?:
     | number
     | string
@@ -24,6 +25,7 @@ const CodeEditor: React.FC<Props> = ({
   value,
   onValueChange,
   highlight,
+  language,
   padding = 0,
   textareaId,
   textareaClassName,
@@ -36,7 +38,7 @@ const CodeEditor: React.FC<Props> = ({
     if (preRef.current) {
       Prism.highlightElement(preRef.current);
     }
-  }, [value]);
+  }, [value, language]);
 
   const handleCodeChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     onValueChange(event.target.value);
@@ -57,7 +59,7 @@ const CodeEditor: React.FC<Props> = ({
     <div className="code-editor" style={{ ...styles.container, ...style }}>
       <pre
         ref={preRef}
-        className="language-javascript"
+        className={`language-${language}`}
         style={{ ...styles.editor, ...styles.highlight, ...contentStyle }}
         dangerouslySetInnerHTML={{
           __html: typeof highlighted === "string" ? highlighted + "<br />" : "",
