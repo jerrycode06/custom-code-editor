@@ -1,0 +1,13 @@
+.code-editor {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: "Fira Code", monospace;
+}
+
+textarea {
+  outline: none;
+  resize: none;
+  background: transparent;
+  caret-color: #fff;
+  color: transparent;
+}
